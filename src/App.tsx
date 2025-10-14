@@ -8,7 +8,7 @@ function App() {
     data: products,
     error,
     isLoading,
-  } = useSWR(`http://localhost:3000/products`, fetcher);
+  } = useSWR(`${import.meta.env.VITE_BACKEND_API_URL}/products`, fetcher);
 
   if (error) return <div>Failed to load products</div>;
   if (isLoading) return <div>Loading products...</div>;
