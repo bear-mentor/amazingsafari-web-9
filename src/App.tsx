@@ -1,7 +1,5 @@
 import useSWR from "swr";
-
-const fetcher = (...args: Parameters<typeof fetch>) =>
-  fetch(...args).then((res) => res.json());
+import { fetcher } from "./lib/fetcher";
 
 function App() {
   const {
