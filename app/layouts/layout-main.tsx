@@ -7,7 +7,7 @@ export default function LayoutMain() {
 
   return (
     <div>
-      <nav>
+      <nav className="flex justify-center p-4">
         <ul className="flex gap-10 items-center">
           <li>
             <Button asChild>

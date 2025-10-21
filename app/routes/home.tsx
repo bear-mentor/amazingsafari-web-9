@@ -24,6 +24,10 @@ export default function Home({ loaderData }: Route.ComponentProps) {
 
   return (
     <div>
+      <section>
+        <img src="/home-hero.jpg" alt="Home Hero" />
+      </section>
+
       <section className="flex justify-center p-10">
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl">
           {products.map((product) => {
@@ -41,7 +45,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
                     <CardTitle className="text-lg">{product.name}</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-2xl font-bold text-primary">
+                    <p className="text-2xl font-bold text-primary-foreground">
                       {formatPrice(product.price)}
                     </p>
                     <p className="text-sm text-muted-foreground">
