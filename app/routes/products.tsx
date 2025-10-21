@@ -1,12 +1,12 @@
 import type { Products } from "~/modules/product/type";
-import type { Route } from "./+types/home";
+import type { Route } from "./+types/products";
 import { formatPrice } from "~/lib/format";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Amazing Safari" },
-    { name: "description", content: "Merchandise from the zoo." },
+    { title: "Products - Amazing Safari" },
+    { name: "description", content: "All products from Amazing Safari." },
   ];
 }
 
@@ -19,15 +19,11 @@ export async function clientLoader() {
   return { products };
 }
 
-export default function HomeRoute({ loaderData }: Route.ComponentProps) {
+export default function ProductsRoute({ loaderData }: Route.ComponentProps) {
   const { products } = loaderData;
 
   return (
     <div>
-      <section>
-        <img src="/home-hero.jpg" alt="Home Hero" />
-      </section>
-
       <section className="flex justify-center p-10">
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl">
           {products.map((product) => {
