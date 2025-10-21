@@ -1,15 +1,14 @@
-import { Form, useActionData, useNavigation } from "react-router";
+import { Form } from "react-router";
 import type { Product } from "~/modules/product/type";
 import type { Route } from "./+types/products-slug";
 import { Button } from "~/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { formatPrice } from "~/lib/format";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ loaderData }: Route.MetaArgs) {
   return [
-    { title: "Product Name - Amazing Safari" },
-    { name: "description", content: "Product description." },
+    { title: `${loaderData.product.name} - Amazing Safari` },
+    { name: "description", content: loaderData.product.description },
   ];
 }
 
