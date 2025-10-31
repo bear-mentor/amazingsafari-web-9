@@ -1,13 +1,16 @@
+import Cookies from "js-cookie";
+
 import type { MeResponse } from "~/modules/user/type";
 import type { Route } from "./+types/dashboard";
+import { redirect } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [{ title: "Dashboard" }];
 }
 
 export async function clientLoader() {
-  // Token
-  const token = `...`;
+  const token = Cookies.get("token");
+  if (!token) return redirect("/login");
 
   const response = await fetch(
     `${import.meta.env.VITE_BACKEND_API_URL}/auth/me`,
