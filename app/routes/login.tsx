@@ -29,7 +29,7 @@ export default function LoginRoute({}: Route.ComponentProps) {
           </CardDescription>
         </CardHeader>
         <CardContent className="pt-6">
-          <Form className="space-y-5">
+          <Form method="POST" className="space-y-5">
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -52,4 +52,22 @@ export default function LoginRoute({}: Route.ComponentProps) {
       </Card>
     </div>
   );
+}
+
+export async function clientAction({ request }: Route.ClientActionArgs) {
+  const formData = await request.formData();
+
+  const email = formData.get("email")?.toString();
+  const password = formData.get("password")?.toString();
+
+  const loginBody = {
+    email,
+    password,
+  };
+
+  console.log(loginBody);
+
+  // const project = await someApi.updateProject({ title });
+
+  return null;
 }
