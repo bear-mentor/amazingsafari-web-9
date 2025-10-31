@@ -6,7 +6,7 @@ export default function LayoutMain() {
   const year = new Date().getFullYear();
 
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <nav className="flex justify-center p-4">
         <ul className="flex gap-10 items-center">
           <li>
@@ -49,7 +49,9 @@ export default function LayoutMain() {
         </ul>
       </nav>
 
-      <Outlet />
+      <main className="flex-[1]">
+        <Outlet />
+      </main>
 
       <footer>
         <p>&copy; {year} Amazing Safari</p>
