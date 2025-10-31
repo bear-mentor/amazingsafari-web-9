@@ -73,7 +73,7 @@ export async function clientAction({ request }: Route.ClientActionArgs) {
   );
 
   const loginResponse: LoginResponse = await response.text();
-  console.log(loginResponse);
+  console.log(loginResponse); // Token
 
   return redirect("/dashboard");
 }
