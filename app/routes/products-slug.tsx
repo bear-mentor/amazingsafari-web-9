@@ -1,4 +1,5 @@
-import { Form } from "react-router";
+import Cookies from "js-cookie";
+import { Form, redirect } from "react-router";
 import type { Product } from "~/modules/product/type";
 import type { Route } from "./+types/products-slug";
 import { Button } from "~/components/ui/button";
@@ -70,7 +71,9 @@ export default function ProductsSlugRoute({
             </div>
 
             {/* Add to Cart Form */}
-            <Form method="post" className="flex flex-col gap-2 items-start">
+            <Form method="PUT" className="flex flex-col gap-2 items-start">
+              <input type="hidden" name="productId" defaultValue={product.id} />
+
               <div>
                 <label
                   htmlFor="quantity"
@@ -117,4 +120,37 @@ export default function ProductsSlugRoute({
       </div>
     </div>
   );
+}
+
+export async function clientAction({ request }: Route.ClientActionArgs) {
+  const token = Cookies.get("token");
+  if (!token) return redirect("/login");
+
+  const formData = await request.formData();
+
+  const addToCartBody = {
+    productId: formData.get("productId")?.toString(),
+    quantity: Number(formData.get("quantity") || 1),
+  };
+
+  const response = await fetch(
+    `${import.meta.env.VITE_BACKEND_API_URL}/cart/items`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(addToCartBody),
+    }
+  );
+
+  if (!response.ok) {
+    Cookies.remove("token");
+    return redirect("/login");
+  }
+
+  await response.json();
+
+  return redirect("/cart");
 }
