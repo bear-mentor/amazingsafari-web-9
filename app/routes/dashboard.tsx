@@ -73,13 +73,13 @@ export default function HomeRoute({ loaderData }: Route.ComponentProps) {
             <section>
               <p className="text-sm text-muted-foreground">Created At</p>
               <p className="font-medium">
-                {formatDateTime(meResponse.createdAt as unknown as string)}
+                {formatDateTime(meResponse.createdAt)}
               </p>
             </section>
             <section>
               <p className="text-sm text-muted-foreground">Updated At</p>
               <p className="font-medium">
-                {formatDateTime(meResponse.updatedAt as unknown as string)}
+                {formatDateTime(meResponse.updatedAt)}
               </p>
             </section>
           </div>
